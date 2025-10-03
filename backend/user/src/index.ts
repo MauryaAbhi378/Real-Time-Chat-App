@@ -2,10 +2,13 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/connectDB.js";
 import { Redis } from "@upstash/redis";
+import { connectRabbitMQ } from "./config/rabbitmq.js";
 
 dotenv.config();
 
 connectDB();
+
+connectRabbitMQ()
 
 export const redisClient = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL,
